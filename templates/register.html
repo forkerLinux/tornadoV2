@@ -1,1 +1,107 @@
-register
+{% extends 'base.html' %}
+
+{% block import %}
+<link href="{{ static_url('css/myinfo-page.css') }}" rel="stylesheet">
+{% end %}
+
+{% block body %}
+    <div class="myinfo-content">
+
+    <form class="myinfo-form" method="post">
+        <table class="myinfo-table">
+            <tr class="myinfo-table-tr">
+                <td class="myinfo-table-td">用户名 
+                    <input class="myinfo-input-area" id="name" type="text" 
+                    name="name" required="required" /> 
+                </td>
+            </tr>
+
+            <tr class="myinfo-table-tr">
+                <td class="myinfo-table-td"> 
+                    <label>性别</label>
+
+                    <label style="padding-left:5%" class="myinfo-sex-m" >
+                        <input type="radio" class="myinfo-radio-m" name="sex" value="m" checked="checked" />男
+                    </label>
+                    <label style="padding-left:5%" class="myinfo-sex-f">
+                        <input type="radio" class="myinfo-radio-f" name="sex" value="f" / >女
+                    </label>
+
+                </td>
+            </tr>
+
+            <tr class="myinfo-table-tr">
+                <td class="myinfo-table-td">年龄 <input class="myinfo-input-area" type="tel" pattern="[0-9]{1,2}" maxlength="2" name="age" id="age"
+                    required="required" />
+                </td>
+            </tr>
+
+            <tr class="myinfo-table-tr myinfo-tel">
+                <td style="padding-left:18px; padding-top:4%; padding-bottom:4%">
+                   &nbsp;&nbsp; 手机号码 <input class="myinfo-input-area" type="tel" pattern="[0-9]{11}" maxlength="11" name="tel" id="tel" 
+                    required="required">
+                </td>
+            </tr>
+
+            <tr class="myinfo-table-tr">
+                <td class="myinfo-table-td">密码
+                    <input class="myinfo-input-area" id="password" type="text" 
+                     required="required" /> 
+                </td>
+            </tr>
+
+            <tr>
+                <td class="myinfo-submit-col">
+                    <input class="myinfo-submit-button" type="button" value="  保存  " id="myinfo-submit" disabled="disabled" />
+                </td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+{% module xsrf_form_html() %}
+{% end %}
+
+{% block script %}
+<script type="text/javascript">
+$(document).ready(function(){
+        
+    $("#password").focus(function(){
+        $("#myinfo-submit").addClass("orange");
+        $("#myinfo-submit").attr("disabled", false);  
+        });
+
+    $("#myinfo-submit").click(function(){
+        var name = $("#name").val();        
+        var sex = $("input:radio[name='sex']:checked").val();
+        var age = $("#age").val();
+        var tel = $("#tel").val();
+        var passwd = $("#password").val();
+        var _xsrf = getCookie('_xsrf');
+
+        $.ajax({
+           type: "POST",
+           url: "/register",
+           data: {
+                name:name, 
+                sex:sex,
+                age:age,
+                tel:tel,
+                passwd:passwd,
+				_xsrf:_xsrf,
+           },
+
+           success:function(data) {
+            alert(data);
+            window.location.href='/login';
+           },
+
+            error:function() {
+            alert('注册失败');
+            }
+        });
+});
+});
+
+</script>
+{% end %}

@@ -32,12 +32,13 @@ class Application(tornado.web.Application):
 		self.myMongodb = client[setting['mongo_options']['collection']]
 
 		#connect mysql
-		db = torndb.Connection(
-			setting['mysql_options']['hostaddress'],
-			setting['mysql_options']['database'],
-			setting['mysql_options']['user'],
-			setting['mysql_options']['password']
-				)
+		#db = torndb.Connection(
+		#		setting['mysql_options']['hostaddress'],
+		#		setting['mysql_options']['database'],
+		#		setting['mysql_options']['user'],
+		#		setting['mysql_options']['password']
+		#			)
+		#self.myMysql = db
 
 		tornado.web.Application.__init__(self, handlers, **setting)
 		self.session_manager = session.SessionManager(
