@@ -6,12 +6,6 @@ import pymongo
 import json
 from base import BaseHandler
 
-class MainHandler(BaseHandler):
-	@tornado.web.authenticated
-	def get(self):
-		self.render("index.html")
-
-
 class LoginHandler(BaseHandler):
 	def get(self):
 		self.render("login.html")
@@ -57,6 +51,7 @@ class RegisterHandler(tornado.web.RequestHandler):
 class LogoutHandler(BaseHandler):
 	def get(self):
 		self.session['username'] = None
-		self.save()
+		self.session.save()
+		self.redirect('/')
 
 

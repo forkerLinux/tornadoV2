@@ -36,9 +36,8 @@ settings = {
 		},
 
         #session生存周期 seconds
-        "session_timeout":30,
-        "debug":True,
-
+        "session_timeout":30*60,
+        "debug":True
        }
 
 
