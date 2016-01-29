@@ -4,10 +4,12 @@
 import tornado.web
 import pymongo
 import json
+import logging
 from base import BaseHandler
 
 class LoginHandler(BaseHandler):
 	def get(self):
+		logging.info("login html")
 		self.render("login.html")
 
 	def post(self):

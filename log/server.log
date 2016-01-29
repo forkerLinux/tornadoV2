@@ -1,0 +1,6 @@
+[I 160129 13:41:16 process:136] Starting 2 processes
+[I 160129 13:41:18 index:12] login html
+[I 160129 13:41:18 web:1946] 200 GET /login?next=%2F (192.168.1.93) 13.91ms
+[I 160129 13:41:18 web:1946] 304 GET /static/js/jquery-1.12.0.js?v=cd0095b52c4242a8aea3ae91aba35ea8 (192.168.1.93) 17.17ms
+[I 160129 13:41:18 web:1946] 304 GET /static/css/myinfo-page.css?v=d192a4ddb521a537e1f1dc33d7a79922 (192.168.1.93) 25.81ms
+[I 160129 13:41:18 web:1946] 304 GET /static/js/common.js?v=cba4dc434475d39c44b61340f0a7e640 (192.168.1.93) 1.64ms

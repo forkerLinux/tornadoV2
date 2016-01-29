@@ -19,6 +19,7 @@ from config import settings
 from util import session
 
 import torndb
+import logging
 
 define("port", default=8888, help="run on the given port", type=int)
 
@@ -51,9 +52,10 @@ class Application(tornado.web.Application):
 #server start
 def main():
 	tornado.options.parse_command_line()
+
 	#multi process
 	sockets = tornado.netutil.bind_sockets(options.port)
-	tornado.process.fork_processes(4)
+	tornado.process.fork_processes(2)
 
 	http_server = tornado.httpserver.HTTPServer(Application())
 	http_server.add_sockets(sockets)
